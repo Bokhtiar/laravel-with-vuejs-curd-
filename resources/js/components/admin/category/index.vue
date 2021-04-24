@@ -25,8 +25,8 @@
 
       <td><a class="btn btn-info text-light btn-sm" href="">Active</a></td>
       <td>
-          <a href="" class="btn btn-sm btn-primary">Edit</a>
-          <a href="" class="btn btn-sm btn-danger">Delete</a>
+          <router-link :to="{ name: 'category/edit', params: {id: category.id} }" class="btn btn-sm btn-primary">Edit</router-link>
+          <a @click.prevent="deleteCategory(category.id)"  href="" class="btn btn-sm btn-danger">Delete</a>
       </td>
     </tr>
   </tbody>
@@ -47,6 +47,12 @@ methods: {
         .then( response =>{
             this.categories = response.data;
         })
+    },
+    deleteCategory(id) {
+        axios.get(`/api/category/delete/${id}`)
+            .then( response => {
+               this.all_category();
+            })
     }
 
 },

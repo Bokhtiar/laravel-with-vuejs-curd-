@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class SubscriberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return response()->json($categories, 200);
+        $subscribers = Subscriber::all();
+        return response()->json($subscribers, 200);
     }
 
     /**
@@ -36,23 +36,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'cat_name' => 'required',
+        $subscriber = Subscriber::create([
+            'email' => $request->email,
         ]);
-
-        $category = Category::create([
-            'cat_name' => $request->cat_name,
-        ]);
-        return response()->json($category, 200);
+        return response()->json($subscriber, 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Subscriber $subscriber)
     {
         //
     }
@@ -60,39 +56,39 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return response()->json($category, 200);
+        $edit = Subscriber::find($id);
+        return response()->json($edit, 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $category['cat_name'] = $request->cat_name;
-        $category->save();
-        return response()->json($category, 200);
+        $subscriber = Subscriber::find($id);
+        $subscriber['email'] = $request->email;
+        $subscriber->save();
+        return response()->json($subscriber, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
     public function delete($id)
     {
-        $category = Category::find($id)->delete();
-        return response()->json($category, 200);
+        $subscriber = Subscriber::find($id)->delete();
+        return response()->json($subscriber, 200);
     }
 }

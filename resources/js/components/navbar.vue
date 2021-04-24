@@ -5,8 +5,8 @@
         <ul class="list-group text-center">
           <li class="list-group-item"> <router-link :to="{name: 'home'}">Home</router-link> </li>
           <li class="list-group-item"> <router-link :to="{name: 'category/list'}">Categories</router-link> </li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item"> <router-link :to="{name: 'subscriber/list' }">Subscriber's</router-link> </li>
+          <li class="list-group-item"> <router-link :to="{name: 'blog/list' }">Blog's</router-link> </li>
           <li class="list-group-item">And a fifth one</li>
         </ul>
       </div>
